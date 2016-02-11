@@ -57,7 +57,7 @@ p22
 F0.0
 sS'gamma'
 p23
-F0.01
+F0.1
 sS'class_weight'
 p24
 Nsb.

@@ -27,9 +27,10 @@ from sklearn.neighbors.nearest_centroid import NearestCentroid
 
 ### open updated final_project_dataset, that already includes 
 ### new features 
+
 with open("final_project_dataset_1feb.pkl", "r") as data_file:
     data_dict = pickle.load(data_file)
-    
+   
 ### commented section below shows steps taken to create new features
 ### uncommenting this part will output differend features from email data
     
@@ -67,14 +68,14 @@ for name in my_dataset:
     from_messages = data_point["from_messages"]
     fraction_to_poi = computeFraction( from_this_person_to_poi, from_messages )
     data_point["fraction_to_poi"] = fraction_to_poi
-    
+'''   
 #dump data for futher re-use
 #SVD suffers from a problem called “sign indeterminancy”,
 # which means the sign of the components_ and the output
 # from transform depend on the algorithm and random state.
 #pickle.dump( my_dataset, open("final_project_dataset_new.pkl", "w") )
 
-'''
+
 
   
 my_dataset = data_dict
@@ -190,5 +191,5 @@ for name, classifier, param in zip(names, classifiers,parameters):
 
 ### dump best perfoming classifier for testing
 clf = SVC(kernel='sigmoid',C=10,coef0=0.5,gamma=0.01)
-
+#clf = SVC(kernel='poly',C=1,coef0=1,gamma=0.01,class_weight= {True:1.4})
 dump_classifier_and_data(clf, my_dataset, features_list)

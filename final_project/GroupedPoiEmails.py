@@ -7,8 +7,8 @@ Created on Mon Dec 28 22:14:04 2015
 
 def GroupedPoiEmails ():
     
-    emails = {'BELDEN TIMOTHY N': ['tbelden@enron.com',
-  'tim.belden@enron.com',
+    emails = {'BELDEN TIMOTHY N': ['tim.belden@enron.com',
+  'tbelden@enron.com',
   'tim_belden@pgn.com',
   'tbelden@ect.enron.com'],
  'BOWEN JR RAYMOND M': ['jbrown@enron.com', 'james.brown@enron.com'],

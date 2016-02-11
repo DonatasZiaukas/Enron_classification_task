@@ -2,7 +2,7 @@
 Output
    dictionary: key -> name of a person working in Enron
                value ->  email content sent by that person to poi 
-  103 and 59 lines needs modification to specify path of maildir on local pc              
+  105 and 59 lines needs modification to specify path of maildir on local pc              
 '''
 
 # building features for tfidf vecotizer
@@ -14,7 +14,7 @@ import sys
 
 sys.path.append( "../tools/" )
 from parse_out_email_text import parseOutText  #SnowballStemmer 
-
+from poi_email_addresses import poiEmails
 from GroupedPoiEmails import GroupedPoiEmails 
 
 import email
@@ -72,15 +72,17 @@ for name in data_dict:
                                 if len(match2) >=2:
                                     stp_words.append(match2[0])
                                     stp_words.append(match2[1])
-                                   # condition for the email to be send to poi
+                                for key, value in msg.items():  # condition for the email to be send to poi
+                                    if key == 'To':
+                                        if value in poiEmails():
                                             
-                                parsed_text = parseOutText(text)
-                                for item in stp_words:
-                                    text = parsed_text.replace(item, '')
-                                merge_text.append(text)
+                                            parsed_text = parseOutText(text)
+                                            for item in stp_words:
+                                                text = parsed_text.replace(item, '')
+                                            merge_text.append(text)
                                             
                                                 
-                       # poi_data.append(data_point['poi'])
+                       
         
         wrd = ' '.join([merge_text[i] for i in range(len(merge_text))])
         wrd = ''.join(i for i in wrd if not i.isdigit())
@@ -116,12 +118,14 @@ for name in data_dict:
                                 if len(match2) >=2:
                                     stp_words.append(match2[0])
                                     stp_words.append(match2[1])
-                                   # condition for the email to be send to poi
+                                for key, value in msg.items():  # condition for the email to be send to poi
+                                    if key == 'To':
+                                        if value in poiEmails():
                                             
-                                parsed_text = parseOutText(text)
-                                for item in stp_words:
-                                    text = parsed_text.replace(item, '')
-                                merge_text.append(text)
+                                            parsed_text = parseOutText(text)
+                                            for item in stp_words:
+                                                text = parsed_text.replace(item, '')
+                                            merge_text.append(text)
                                             
                                                
                      
@@ -134,7 +138,7 @@ for name in data_dict:
 
                 
                 
-pickle.dump( word_data, open("email_data_19jan_0001.pkl", "w") )
+pickle.dump( word_data, open("email_data.pkl", "w") )
              
             
             

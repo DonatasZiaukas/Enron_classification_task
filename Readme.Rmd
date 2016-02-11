@@ -1,0 +1,46 @@
+---
+title: "README"
+author: "Donatas Ziaukas"
+date: "7/02/2016"
+output: html_document
+---
+
+__GroupedPoiEmails.py__
+
+  Dictionary of grouped email addresses by name.
+
+__email_data_preprocess.py__
+
+   Before running the script: *103 and 59 lines needs modification to specify path of maildir on local pc*
+   
+   Outputs a dictionary: key refers to a name of a person working in Enron,
+   value is all emails (sent by that person to poi) merged in to one chunk 
+   of text data.
+
+__email_data_19jan_0001.pkl__
+
+   Output of email_data_preprocess.py.
+
+__addTextAsFeature.py__
+
+   convertToNdarray() -> transforms dictionary in to numpy.ndarray
+
+   updateMyDataset() -> Converts a collection of text data to a matrix of TF-IDF features.
+   Reduces dimensionality to include only first 100 components.Updates project dataset
+   with newly build features.
+
+__createNewFeatures.py__
+
+   computeFraction() -> given a number messages to/from POI (numerator) 
+        and number of all messages to/from a person (denominator),
+        returns the fraction of messages to/from that person
+        that are from/to a POI.
+
+__StandardizeFeatures.py__
+
+   StandardizeFeatures() -> Standardizes dictionary values by removing
+   the mean and scaling to unit variance.
+
+__final_project_dataset_1feb.pkl__
+
+   __final_project_dataset__ with added new features and performed scaling
